@@ -21,8 +21,10 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      - name: application.yml 파일 만들기
-        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
+      #      - name: application.yml 파일 만들기
+      #        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
+      - name: .env 파일 만들기
+        run: echo "${{ secrets.ENV }}" > .env
 
       - name: Grant execute permission to Gradle wrapper
         run: chmod +x ./gradlew
