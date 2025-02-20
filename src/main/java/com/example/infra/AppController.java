@@ -14,7 +14,7 @@ public class AppController {
     @GetMapping("/redis")
     public String home() {
         // Redis에 값 저장
-        redisTemplate.opsForValue().set("cdf", "def");
+        redisTemplate.opsForValue().set("abc", "def");
 
         // Redis에서 값 가져오기
         String value = (String)redisTemplate.opsForValue().get("cdf");
