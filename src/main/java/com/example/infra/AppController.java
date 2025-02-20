@@ -24,7 +24,7 @@ public class AppController {
 
     @GetMapping("/")
     public String hello() {
-        return "checking ci pipeline";
+        return "changing docker hub repo public to private";
     }
 
     @GetMapping("/api/login")
