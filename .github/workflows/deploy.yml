@@ -64,11 +64,12 @@ jobs:
         uses: appleboy/ssh-action@v1.0.3
         env:
           COMPOSE: "/home/ubuntu/compose/compose.yml"
+          ENV_VAR: ${{ secrets.ENV }}
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_PRIVATE_KEY }}
-          envs: COMPOSE
+          envs: COMPOSE, ENV_VAR
           script_stop: true
           # 기존에 compose.yml에 연결된 컨테이너 중지 및 이미지 삭제후
           # 새롭게 이미지 다운로드 받아서 compose.yml 기준으로 다시 컨테이너 생성
@@ -78,6 +79,6 @@ jobs:
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE down --rmi all
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/mynginx
-            printf "%s\n" "${{ secrets.ENV }}" | sudo tee /home/ubuntu/compose/env.properties > /dev/null
+            printf "%s\n" $ENV_VAR | sudo tee /home/ubuntu/compose/env.properties > /dev/null
 #            echo ${{ secrets.ENV }} | sudo tee /home/ubuntu/compose/env.properties > /dev/null
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
