@@ -17,7 +17,7 @@ public class AppController {
         redisTemplate.opsForValue().set("abc", "def");
 
         // Redis에서 값 가져오기
-        String value = (String)redisTemplate.opsForValue().get("cdf");
+        String value = (String)redisTemplate.opsForValue().get("abc");
 
         return "Value from Redis: " + value;
     }
