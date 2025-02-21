@@ -1,7 +1,8 @@
 spring:
-#  config:
-#    import: optional:file:/app/settings/env.properties
+  config:
+    import: optional:file:/app/settings/env.properties
   data:
     redis:
-      host: redis-server     #${REDIS_HOST_NAME}
+#      host: redis-server     #${REDIS_HOST_NAME}
+      host: ${REDIS_HOST_NAME}
 
