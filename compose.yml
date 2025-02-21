@@ -11,8 +11,10 @@ services:
     depends_on:
       redis-server:
         condition: service_healthy
+    volumes:
+      - /home/ubuntu/setting:./
     env_file:
-      - /home/ubuntu/.env
+      - ./.env
   redis-server:
     image: redis
     container_name: paw-redis
