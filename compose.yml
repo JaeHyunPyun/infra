@@ -12,7 +12,7 @@ services:
       redis-server:
         condition: service_healthy
     volumes:
-      - /home/ubuntu/setting:./
+      - /home/ubuntu/setting/:./
     env_file:
       - ./.env
   redis-server:
