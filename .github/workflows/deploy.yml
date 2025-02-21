@@ -81,4 +81,4 @@ jobs:
             echo ${{ secrets.ENV }} | sudo tee /home/ubuntu/myspringapp/.env > /dev/null
             sudo chmod 600 /home/ubuntu/myspringapp/.env
 #           sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
-            sudo docker compose --env-file /home/ubuntu/compose/.composeenv --env-file /home/ubuntu/myspringapp/.env -f $COMPOSE up --build -d
+            sudo docker compose --env-file /home/ubuntu/myspringapp/.env --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
