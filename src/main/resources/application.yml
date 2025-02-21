@@ -3,4 +3,5 @@ spring:
     import: optional:file:/app/settings/env.properties
   data:
     redis:
-      host: redis-server
+      host: redis-server     #${REDIS_HOST_NAME}
+

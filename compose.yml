@@ -11,10 +11,9 @@ services:
     depends_on:
       redis-server:
         condition: service_healthy
+    #추가
     volumes:
       - /home/ubuntu/compose/:/app/settings/
-#    env_file:
-#      - ./.env
   redis-server:
     image: redis
     container_name: paw-redis
