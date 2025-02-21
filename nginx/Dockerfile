@@ -13,7 +13,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ## 1. certbot 설치
 #RUN apt-get update && \
 #    apt-get install -y certbot python3-certbot-nginx
-
+#
 ## 2. entrypoint 스크립트를 컨테이너에 복사
 #COPY ./entrypoint.sh /entrypoint.sh
 #RUN chmod +x /entrypoint.sh
