@@ -4,3 +4,4 @@ spring:
   data:
     redis:
       host: redis-server     #${REDIS_HOST_NAME}
+
