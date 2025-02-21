@@ -31,5 +31,4 @@ services:
     depends_on:
       - spring-app
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt  # 호스트의 /etc/letsencrypt와 컨테이너의 /etc/letsencrypt를 연동
-    user: "1000:1000" # 상기 파일 권한 부여된 사용자로 uid:gid 설정
+      - /etc/letsencrypt:/etc/letsencrypt:rw  # 호스트의 /etc/letsencrypt와 컨테이너의 /etc/letsencrypt를 연동
