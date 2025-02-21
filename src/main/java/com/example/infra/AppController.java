@@ -30,7 +30,7 @@ public class AppController {
         return "Value from Redis: " + value;
     }
 
-    @GetMapping("/db")
+    @GetMapping("/dbpage")
     public String getDb() {
         String deptName = "";
         String deptno = "";
@@ -58,7 +58,7 @@ public class AppController {
 
     @GetMapping("/")
     public String hello() {
-        return "changing docker hub repo public to private";
+        return "change db method url";
     }
 
     @GetMapping("/api/login")
