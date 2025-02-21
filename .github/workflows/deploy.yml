@@ -17,11 +17,10 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-      #
-      #      - name: application.yml 파일 만들기
-      #        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
-      - name: .env 파일 만들기
-        run: echo "${{ secrets.ENV }}" > .env
+#      - name: application.yml 파일 만들기
+#        run: echo "${{ secrets.APPLICATION_PROPERTIES }}" > ./src/main/resources/application.yml
+#      - name: .env 파일 만들기
+#        run: echo "${{ secrets.ENV }}" > .env
       - name: 테스트 및 빌드하기
         run: |
           sudo chmod +x gradlew
@@ -79,4 +78,6 @@ jobs:
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE down --rmi all
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/mynginx
+            echo ${{ secrets.ENV }} | sudo tee /home/ubuntu/myspringapp/.env > /dev/null
+            sudo chmod 600 /home/ubuntu/myspringapp/.env
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
