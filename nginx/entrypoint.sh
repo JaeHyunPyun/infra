@@ -8,3 +8,5 @@ nginx -s reload
 
 # nginx 포그라운드로 시작 (계속 실행되도록)
 nginx -g "daemon off;"
+
+#test
