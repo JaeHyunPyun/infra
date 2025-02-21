@@ -11,10 +11,9 @@ services:
     depends_on:
       redis-server:
         condition: service_healthy
+    #추가
     volumes:
       - /home/ubuntu/compose/:/app/settings/
-#    env_file:
-#      - ./.env
   redis-server:
     image: redis
     container_name: paw-redis
@@ -29,7 +28,10 @@ services:
     container_name: paw-nginx
     ports:
       - 80:80
+      - 443:443
     networks:
       - my-net
     depends_on:
       - spring-app
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt:rw  # 호스트의 /etc/letsencrypt와 컨테이너의 /etc/letsencrypt를 연동
