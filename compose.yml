@@ -25,6 +25,7 @@ services:
     container_name: paw-nginx
     ports:
       - 80:80
+      - 443:443
     networks:
       - my-net
     depends_on:
