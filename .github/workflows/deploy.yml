@@ -78,9 +78,7 @@ jobs:
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE down --rmi all
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/mynginx
-            
-            echo "${{ secrets.ENV }}" > /home/ubuntu/myspringapp/.env
-            chmod 600 /home/ubuntu/myspringapp/.env
-
-#            sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
-            sudo docker compose --env-file /home/ubuntu/compose/.composeenv --env-file /home/ubuntu/myspringapp/.env -f $COMPOSE up --build -d
+            echo ${{ secrets.ENV }} | sudo tee /home/ubuntu/myspringapp/.springenv > /dev/null
+            sudo chmod 600 /home/ubuntu/myspringapp/.springenv
+#           sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
+            sudo docker compose --env-file /home/ubuntu/compose/.composeenv --env-file /home/ubuntu/myspringapp/.springenv -f $COMPOSE up --build -d
