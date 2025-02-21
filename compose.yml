@@ -12,7 +12,7 @@ services:
       redis-server:
         condition: service_healthy
     env_file:
-      - /home/ubuntu/myspringapp/.env
+      - /home/ubuntu/.env
   redis-server:
     image: redis
     container_name: paw-redis
