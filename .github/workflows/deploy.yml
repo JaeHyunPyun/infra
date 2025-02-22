@@ -77,7 +77,6 @@ jobs:
             sudo docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE down --rmi all
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
-#            sudo docker pull ${{secrets.DOCKER_USERNAME}}/mynginx
             echo "${{ secrets.ENV }}" | sudo tee /home/ubuntu/compose/env.properties > /dev/null
             sudo sed -i '/DRONE_SSH_PREV_COMMAND_EXIT_CODE/d' /home/ubuntu/compose/env.properties
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
