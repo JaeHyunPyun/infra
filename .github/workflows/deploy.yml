@@ -79,6 +79,4 @@ jobs:
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/mynginx
             sudo echo -e ${{ secrets.ENV }} > /home/ubuntu/compose/env.properties
-#            echo -e ${{ secrets.ENV }} | sudo tee /home/ubuntu/compose/env.properties > /dev/null
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE up --build -d
-#            test
