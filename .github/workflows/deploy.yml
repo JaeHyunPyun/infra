@@ -74,7 +74,7 @@ jobs:
           # 새롭게 이미지 다운로드 받아서 compose.yml 기준으로 다시 컨테이너 생성
           # --build 옵션을 통해 항상 이미지 새롭게 빌드하도록 함(프로젝트 갱신된 내용 반영위해) ##
           script: |
-            sudo docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+            echo "${{ secrets.DOCKER_PASSWORD }}" | sudo docker login --username ${{ secrets.DOCKER_USERNAME }} --password-stdin
             sudo docker compose --env-file /home/ubuntu/compose/.composeenv -f $COMPOSE down --rmi all
             sudo docker pull ${{secrets.DOCKER_USERNAME}}/myspringapp
             echo "${{ secrets.ENV }}" | sudo tee /home/ubuntu/compose/propertytransfer/env.properties > /dev/null
