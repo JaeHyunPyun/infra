@@ -58,7 +58,7 @@ public class AppController {
 
     @GetMapping("/")
     public String hello() {
-        return "change db method url";
+        return "change db ip address";
     }
 
     @GetMapping("/api/login")
