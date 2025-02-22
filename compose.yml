@@ -13,7 +13,7 @@ services:
         condition: service_healthy
     #추가
     volumes:
-      - /home/ubuntu/compose/:/app/settings/
+      - /home/ubuntu/compose/propertytransfer/:/app/settings/
   redis-server:
     image: redis
     container_name: paw-redis
