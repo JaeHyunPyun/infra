@@ -24,8 +24,12 @@ services:
       interval: 5s
       retries: 10
   nginx:
-    image: ${DOCKER_USERNAME}/mynginx
+    image: nginx:1.15-alpine
     container_name: paw-nginx
+    volumes:
+        - ./data/nginx:/etc/nginx/conf.d
+        - ./data/certbot/conf:/etc/letsencrypt
+        - ./data/certbot/www:/var/www/certbot
     ports:
       - 80:80
       - 443:443
@@ -33,5 +37,13 @@ services:
       - my-net
     depends_on:
       - spring-app
+    command: '/bin/sh -c ''while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g "daemon off;"'''
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
     volumes:
-      - /etc/letsencrypt:/etc/letsencrypt:rw  # 호스트의 /etc/letsencrypt와 컨테이너의 /etc/letsencrypt를 연동
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    networks:
+      - my-net
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
